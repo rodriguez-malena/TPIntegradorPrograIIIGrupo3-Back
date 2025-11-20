@@ -54,7 +54,7 @@ export const createProduct = async (req,res)  => {
             
             if(!titulo || !precio || !ruta_img || !autor || !categoria){
                 console.log("Falta completar algun campo");
-                res.status(404).json({
+                return res.status(404).json({
                     message: "No se completaron los campos requeridos"
                     })
             }
@@ -86,7 +86,7 @@ export const removeProduct  = async (req,res)  => {
             if (result.affectedRows === 0){
                 console.log("Error al eliminar producto");
     
-                res.status(404).json({
+                return res.status(404).json({
                     message: "No se eliminó el producto"
                 })
             }
@@ -108,11 +108,12 @@ export const removeProduct  = async (req,res)  => {
 
 export const modifyproduct  = async (req,res)  => {
     try {
-        let { id, titulo, precio, ruta_img, autor, categoria } = req.body;
+        let { id } = req.params;
+        let { titulo, precio, ruta_img, autor, categoria } = req.body;
 
         if(!id || !titulo || !precio || !ruta_img || !autor || !categoria){
             console.log("Falta completar algun campo");
-            res.status(404).json({
+            return res.status(404).json({
                 message: "No se completaron los campos requeridos"
                 })
         }
@@ -123,13 +124,14 @@ export const modifyproduct  = async (req,res)  => {
         if (result.affectedRows === 0){
             console.log("Error al actualizar producto");
 
-            res.status(404).json({
+            return res.status(404).json({
                 message: "No se actualizó el producto"
             })
         }
 
         res.status(200).json({
-            message:"Producto actualizado con exito"
+            message:"Producto actualizado con exito",
+            
         })
         
     } catch (error) {

@@ -19,7 +19,7 @@ router.get("/:id", validateId, getProductId);
 router.post("/", createProduct);
 
 // Actualizar producto
-router.put("/", validateId, modifyproduct);
+router.put("/:id", validateId, modifyproduct);
 
 // Eliminar producto 
 router.delete("/:id", validateId, removeProduct);

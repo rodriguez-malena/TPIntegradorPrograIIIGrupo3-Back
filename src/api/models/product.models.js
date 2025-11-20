@@ -25,7 +25,7 @@ const updateProduct = (id,titulo, precio, ruta_img, autor, categoria) => {
             WHERE id=? 
             `;
 
-    return connection.query(sql,[ id,titulo, precio, ruta_img, autor, categoria]);
+    return connection.query(sql,[titulo, precio, ruta_img, autor, categoria,id]);
 }
 
 const deleteProduct = (id) => {
