@@ -31,7 +31,7 @@ export const getProductId = async (req,res) => {
         if (rows.length === 0){
             console.log("El producto con ese id no existe");
             res.status(400).json({
-                message: `El producto con el id: ${id} NO existe`
+                message: `El producto con el id ${id} no existe`
             })
         }
 
@@ -81,7 +81,7 @@ export const removeProduct  = async (req,res)  => {
             let { id } = req.params;
     
             let [result] = await ProductModels.deleteProduct(id);
-            console,log(result);
+            console.log(result);
     
             if (result.affectedRows === 0){
                 console.log("Error al eliminar producto");
@@ -92,7 +92,7 @@ export const removeProduct  = async (req,res)  => {
             }
     
             res.status(200).json({
-                message: `El producto con el id: ${id}  ha sido eliminado correctamente`
+                message: `El producto con id ${id} fue dado de baja`
             })
     
     
