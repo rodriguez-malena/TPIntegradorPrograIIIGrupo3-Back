@@ -13,23 +13,23 @@ const selectProductWhereId = (id) => {
 
 }
 
-const insertProduct = (titulo, precio, ruta_img, autor, categoria) => {
-    let sql = "INSERT INTO products (titulo, precio, ruta_img, autor, categoria) VALUES (?,?,?,?,?)";
-    return connection.query(sql, [titulo, precio, ruta_img, autor, categoria]);
+const insertProduct = (titulo, precio, ruta_img, autor, categoria,sinopsis, activo) => {
+    let sql = "INSERT INTO products (titulo, precio, ruta_img, autor, categoria, sinopsis, activo) VALUES (?,?,?,?,?,?,?)";
+    return connection.query(sql, [titulo, precio, ruta_img, autor, categoria, sinopsis, activo]);
 }
 
-const updateProduct = (id,titulo, precio, ruta_img, autor, categoria) => {
+const updateProduct = (id,titulo, precio, ruta_img, autor, categoria, sinopsis, activo) => {
     let sql =  `
             UPDATE products 
-            SET titulo=?, precio=?, ruta_img=?, autor=?, categoria=?
+            SET titulo=?, precio=?, ruta_img=?, autor=?, categoria=?, sinopsis=?, activo=?
             WHERE id=? 
             `;
 
-    return connection.query(sql,[titulo, precio, ruta_img, autor, categoria,id]);
+    return connection.query(sql,[titulo, precio, ruta_img, autor, categoria, sinopsis, activo, id]);
 }
 
 const deleteProduct = (id) => {
-    let sql = "DELETE FROM products WHERE id=?";
+    let sql = "UPDATE products WHERE id=?";
     return connection.query(sql, [id]);
 
 }
