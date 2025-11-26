@@ -22,14 +22,14 @@ const updateProduct = (id,titulo, precio, ruta_img, autor, categoria, sinopsis, 
     let sql =  `
             UPDATE products 
             SET titulo=?, precio=?, ruta_img=?, autor=?, categoria=?, sinopsis=?, activo=?
-            WHERE id=? 
+            WHERE id= ? 
             `;
 
     return connection.query(sql,[titulo, precio, ruta_img, autor, categoria, sinopsis, activo, id]);
 }
 
 const deleteProduct = (id) => {
-    let sql = "UPDATE products WHERE id=?";
+    let sql = "UPDATE products SET activo=0 WHERE id = ?";
     return connection.query(sql, [id]);
 
 }
