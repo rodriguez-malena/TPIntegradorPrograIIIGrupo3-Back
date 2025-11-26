@@ -50,16 +50,16 @@ export const getProductId = async (req,res) => {
 
 export const createProduct = async (req,res)  => {
     try {
-            let { titulo, precio, ruta_img, autor, categoria } = req.body;
+            let { titulo, precio, ruta_img, autor, categoria, sinopsis, activo} = req.body;
             
-            if(!titulo || !precio || !ruta_img || !autor || !categoria){
+            if(!titulo || !precio || !ruta_img || !autor || !categoria || !sinopsis || !activo){
                 console.log("Falta completar algun campo");
                 return res.status(404).json({
                     message: "No se completaron los campos requeridos"
                     })
             }
                 
-            let [rows] = await ProductModels.insertProduct(titulo, precio, ruta_img, autor, categoria);
+            let [rows] = await ProductModels.insertProduct(titulo, precio, ruta_img, autor, categoria, sinopsis, activo);
             console.log(rows);
             
 
@@ -109,9 +109,9 @@ export const removeProduct  = async (req,res)  => {
 export const modifyproduct  = async (req,res)  => {
     try {
         let { id } = req.params;
-        let { titulo, precio, ruta_img, autor, categoria } = req.body;
+        let { titulo, precio, ruta_img, autor, categoria, sinopsis, activo } = req.body;
 
-        if(!id || !titulo || !precio || !ruta_img || !autor || !categoria){
+        if(!id || !titulo || !precio || !ruta_img || !autor || !categoria || !sinopsis || !activo){
             console.log("Falta completar algun campo");
             return res.status(404).json({
                 message: "No se completaron los campos requeridos"
@@ -119,7 +119,7 @@ export const modifyproduct  = async (req,res)  => {
         }
 
         
-        let [result] = await ProductModels.updateProduct(id, titulo, precio, ruta_img, autor, categoria);
+        let [result] = await ProductModels.updateProduct(id, titulo, precio, ruta_img, autor, categoria, sinopsis, activo);
 
         if (result.affectedRows === 0){
             console.log("Error al actualizar producto");
