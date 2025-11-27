@@ -12,7 +12,10 @@ const PORT = environments.port;
 import cors from "cors";
 
 import { loggerUrl } from "./src/api/middlewares/middlewares.js";
-import { productRoutes } from "./src/api/routes/index.js"
+// Importamos las rutas
+import { productRoutes, viewRoutes } from "./src/api/routes/index.js"
+
+import { __dirname, join } from "./src/api/utils/index.js";
 
 /*===========
 MIDDLEWARES
@@ -23,15 +26,25 @@ app.use(cors());
 
 app.use(loggerUrl);
 
+app.use(express.static(join(__dirname, "src/public")))
+
 /*==========
-ENDPOINTS
+CONFIG
 ============*/
+// Configuramos EJS como motor de plantilla
+app.set("view engine", "ejs");
+
+app.set("views", join(__dirname,"src/views"));  // Nuestras vistas se serviranm desde la carpeta views
 
 
 /*==========
 RUTAS
 ============*/
+//Rutas producto
 app.use("/api/products", productRoutes)
+
+// Rutas vista
+app.use("/", viewRoutes);
 
 
 // Arranca servidor
