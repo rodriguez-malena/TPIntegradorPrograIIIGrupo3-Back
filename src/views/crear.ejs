@@ -1,10 +1,11 @@
 <%- include("partials/head.ejs") %>
 <%- include("partials/nav.ejs") %>
 
-<main>
+<main id="alta-container">
+    <div id="products-container" class="form-container"></div>
         <div class="logo-titulo">
             <img src="./img-admin/mas.png" alt="Imagen de signo mas">
-                <h1>Crear nuevo producto</h1>
+            <h3>Crear nuevo producto</h3>
         </div>
 
         <!--Formulario que manda los datos al endpoint /-->
@@ -16,10 +17,10 @@
 
                 <label for="autorProd">Autor</label>
                 <input class="input-ingreso" type="text" name="autor" id="autorProd" required>
-                
+                        
                 <label for="imageProd">Imagen</label>
                 <input class="input-ingreso" type="text" name="ruta_img" id="imageProd" required>
-                
+                        
                 <label for="precioProd">Precio</label>
                 <input class="input-ingreso" type="number" name="precio" id="precioProd" required>
 
@@ -45,9 +46,27 @@
                 <input class="input-submit" type="submit" value="Crear Producto">
             </div>
         </form>
+    </div>
 
+    <div id="users-container" class="form-container">
+        <h3>Crear usuario</h3>
 
-        <section id="contenedor-productos"></section>
+        <!-- Formulario para crear usuarios y enviarlos a /api/users -->
+        <form id="altaUsers-container" class="form-alta">
+            <label for="nombreUser">Nombre</label>
+            <input type="text" name="name" id="nombreUser" required>
+    
+            <label for="emailUser">Email</label>
+            <input type="email" name="email" id="emailUser" required>
+    
+            <label for="passwordUser">Password</label>
+            <input type="password" name="password" id="passwordUser" required>
+    
+            <input type="submit" value="Crear usuario">
+        </form>
+    </div>
+
+    
     </main>
 
     <script src="js/crear.js"></script>

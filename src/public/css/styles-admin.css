@@ -223,5 +223,68 @@ Eliminar
 
 .message-error {
     list-style: none;
-    color: var(--marron);
+    padding: 10px;
+    border: 2px solid #eb99a1;
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #eb99a1;;
+}
+
+/*================
+Login
+==================*/
+
+
+#login-container {
+    border: 2px solid rebeccapurple;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 350px;
+    justify-content: space-evenly;
+}
+
+.login-botonera {
+    display: flex;
+}
+
+#login-form {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form button {
+    font-family: var(--fuente-secundaria);
+    padding: 0.5rem;
+    color: var(--cremita);
+    border-radius: 5px;
+    box-shadow: 0 6px 10px rgba(70, 39, 5, 0.15);
+    border: none;
+    background-color: var(--marron);
+    cursor: pointer;
+}
+
+form button:hover {
+    border: 1px solid var(--marron);
+}
+
+form input {
+    width: 200px;   
+    height: 30px;   
+    border: 1px solid var(--cremita);
+    border-radius: 8px;
+    padding: 0.2rem;
+    font-size: 15px;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid var(--marron);
+    box-shadow: 0 0 5px var(--marron);
 }
