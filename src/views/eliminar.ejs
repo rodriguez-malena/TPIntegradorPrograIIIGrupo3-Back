@@ -1,0 +1,30 @@
+
+<%- include("partials/head.ejs") %>
+<%- include("partials/nav.ejs") %>
+
+<main>
+        <div class="logo-titulo">
+            <img src="./img-admin/tacho-basura.png" alt="Imagen de tacho de basura">
+            <h1>Eliminar producto</h1>
+        </div>
+
+        <form id="getProduct-form">
+            <div class="ingresoId">
+                <label for="idProd">Id del Producto</label>
+                <input class="input-ingreso" type="number" name="idProd" id="idProd" required>
+            </div>
+            <input class="input-submit" type="submit" value="Buscar">
+        </form>
+
+        <section id="contenedor-productos">
+            <ul id="lista-productos"></ul>
+        </section>
+    </main>
+
+
+<script type="module" src="js/eliminar.js"></script>
+
+<%- include("partials/footer.ejs")%>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<%- include("partials/head.ejs") %>
+<%- include("partials/nav.ejs") %>
+
+<main id="alta-container">
+    <div id="products-container" class="form-container"></div>
+        <div class="logo-titulo">
+            <img src="./img-admin/mas.png" alt="Imagen de signo mas">
+            <h3>Crear nuevo producto</h3>
+        </div>
+
+        <!--Formulario que manda los datos al endpoint /-->
+        <form id="altaProucts-container">
+
+            <div class="input-datos">
+                <label for="tituloProd">Titulo</label>
+                <input class="input-ingreso" type="text" name="titulo" id="tituloProd" required>
+
+                <label for="autorProd">Autor</label>
+                <input class="input-ingreso" type="text" name="autor" id="autorProd" required>
+                        
+                <label for="imageProd">Imagen</label>
+                <input class="input-ingreso" type="text" name="ruta_img" id="imageProd" required>
+                        
+                <label for="precioProd">Precio</label>
+                <input class="input-ingreso" type="number" name="precio" id="precioProd" required>
+
+                <label for="categoriaProd">Categoría</label>
+                <select class="input-ingreso" name="categoria" id="categoriaProd">
+                    <option value="usado">Usado</option>
+                    <option value="nuevo">Nuevo</option>
+                </select>
+
+                <label for="sinopsisProd">Sinopsis</label>
+                <input class="input-ingreso" type="text" name="sinopsis" id="sinopsisProd" required>
+
+                <label for="activeProd">Activo</label>
+                <select class="input-ingreso" name="activo" id="activeProd">
+                    <option value=1>Activo</option>
+                    <option value=0>Inactivo</option>
+                </select>
+
+
+            </div>
+
+            <div class="input-enviar">
+                <input class="input-submit" type="submit" value="Crear Producto">
+            </div>
+        </form>
+    </div>
+
+    <div id="users-container" class="form-container">
+        <h3>Crear usuario</h3>
+
+        <!-- Formulario para crear usuarios y enviarlos a /api/users -->
+        <form id="altaUsers-container" class="form-alta">
+            <label for="nombreUser">Nombre</label>
+            <input type="text" name="name" id="nombreUser" required>
+    
+            <label for="emailUser">Email</label>
+            <input type="email" name="email" id="emailUser" required>
+    
+            <label for="passwordUser">Password</label>
+            <input type="password" name="password" id="passwordUser" required>
+    
+            <input type="submit" value="Crear usuario">
+        </form>
+    </div>
+
+    
+    </main>
+
+    <script src="js/crear.js"></script>
+
+<%- include("partials/footer.ejs")%>
