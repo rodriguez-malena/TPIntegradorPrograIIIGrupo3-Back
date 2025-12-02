@@ -8,8 +8,7 @@ export const productView = async (req, res)  => {
 
         
         res.render("index",{
-            title:"Inicio",
-            about: "Listado principal",
+            title:"Listado",
             productos: rows
         });
 
