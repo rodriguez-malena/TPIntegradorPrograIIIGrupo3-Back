@@ -5,13 +5,12 @@ import ProductModels from "../models/product.models.js";
 // Traer todos los productos
 export const getAllProducts = async (req, res) => {
     try {
-        
         const [rows] = await ProductModels.selectAllProducts();
         console.log(rows);
 
         res.status(200).json({
             payload: rows,
-            message: rows === 0 ? "No se encontraron productos":"Productos encontrados"
+            message: rows.length === 0 ? "No se encontraron productos":"Productos encontrados"
         })
         
     } catch (error) {
