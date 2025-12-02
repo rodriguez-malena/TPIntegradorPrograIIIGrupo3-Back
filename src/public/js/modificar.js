@@ -36,25 +36,24 @@ getProductForm.addEventListener("submit", async (event) => {
     if(!response.ok){
         console.log(datos);
         console.log(datos.message);
-        alert("ID inválido");
-        mostrarError(datos.message);
+        alert("No existe producto con aaaaa");
         return; 
     }   
     let producto = datos.payload[0]; // Accedo al objeto que se encuentra en la posicion 0 de payload
-
-
+    
+    
     let htmlProducto = `
-        <li class="li-producto">
-                <img class="producto-img" src="${producto.ruta_img}" alt="${producto.titulo}">
-                <p>ID: ${producto.id} <br> ${producto.titulo} - ${producto.autor} <br> Precio $${producto.precio}</p>
-        </li>
-        <li class="li-botonera">
-            <input class="input-submit" type="button" id="updateProduct_button" value="Actualizar producto">
-        </li>
+    <li class="li-producto">
+    <img class="producto-img" src="${producto.ruta_img}" alt="${producto.titulo}">
+    <p>ID: ${producto.id} <br> ${producto.titulo} - ${producto.autor} <br> Precio $${producto.precio}</p>
+    </li>
+    <li class="li-botonera">
+    <input class="input-submit" type="button" id="updateProduct_button" value="Actualizar producto">
+    </li>
     `;
-
+    
     listaProductos.innerHTML = htmlProducto;
-
+    
     let updateProduct_button = document.getElementById("updateProduct_button");
 
     updateProduct_button.addEventListener("click", event => {
@@ -64,6 +63,7 @@ getProductForm.addEventListener("submit", async (event) => {
 }catch(error){
     console.log(error);
     alert("No existe producto con ese id");
+    mostrarError(datos.message);
 }
 });
 
