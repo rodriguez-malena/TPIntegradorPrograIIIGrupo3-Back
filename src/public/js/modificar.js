@@ -26,6 +26,8 @@ getProductForm.addEventListener("submit", async (event) => {
     console.log(`Realizando una peticion GET a la url ${url}/api/products/${idProd}`);
 
     // Enviamos en una peticion GET el id pegado a la url
+    
+    try{
     let response = await fetch(`${url}/api/products/${idProd}`);
 
     let datos = await response.json();
@@ -34,6 +36,7 @@ getProductForm.addEventListener("submit", async (event) => {
     if(!response.ok){
         console.log(datos);
         console.log(datos.message);
+        alert("ID inválido");
         mostrarError(datos.message);
         return; 
     }   
@@ -58,6 +61,10 @@ getProductForm.addEventListener("submit", async (event) => {
         event.stopPropagation(); // Evitamos la propagacion de eventos
         crearFormulario(producto);
     })
+}catch(error){
+    console.log(error);
+    alert("No existe producto con ese id");
+}
 });
 
 
@@ -147,7 +154,7 @@ async function actualizarProducto(event) {
     }
 
     } catch (error) {
-            console.log("Error: ", error)
+            console.log("Error: ", error);
     }
     
 }
