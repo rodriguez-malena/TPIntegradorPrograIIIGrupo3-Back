@@ -11,7 +11,7 @@
 
 body{
     font-family:  var(--fuente-secundaria);
-    background-color: var(--cremin);
+    background-color: white;
     color: var(--marron);
 }
 
@@ -45,25 +45,32 @@ TEMA
     HEADER
 ====================*/
 header {
+    display: flex;
+    justify-content: space-between;  
+    align-items: center;             
+    flex-wrap: wrap;
     background-color: var(--marron);
     box-shadow: var(--shadow);
     padding: 1rem;
 }
 
-.registro {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
+header h1 {
+    color: var(--cremita);
 }
 
-.logo-titulo {
-    display:flex;
-    justify-content: start;
+
+.titulo {
+    display: flex;
+    justify-content: center;
     align-items: center;
     gap: 0.5rem;
 }
 
+.logo-titulo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
 .logo-titulo img {
     width: 40px;
     height: 40px;
@@ -78,16 +85,22 @@ h1 {
 
 nav ul {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-nav li a{
+nav a {
     color: var(--cremita);
+    font-weight: 600;
     text-decoration: none;
-
 }
 
+nav a:hover {
+    text-decoration: underline;
+}
 
 
 /*===============
@@ -131,6 +144,7 @@ nav li a{
 
 #lista-productos{
     display:flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 2rem;
     width: 50%;
@@ -155,6 +169,7 @@ nav li a{
 
 #getProduct-form {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;     
     gap: 1rem;               
     width: fit-content;   /* Ajusta el ancho al contenido */
@@ -193,7 +208,17 @@ nav li a{
 /*===============
     Crear
 =================*/
-#altaProucts-container{
+
+#alta-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    flex-wrap: wrap;
+    align-items: flex-start; /* Alinea arriba, evita que uno suba/baje */
+    gap: 3rem; /* Espacio entre los formularios */
+    padding: 2rem;
+}
+
+#altaProucts-container, #altaUsers-container{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -207,6 +232,8 @@ nav li a{
     box-shadow:  var(--shadow);
 }
 
+
+
 .input-datos {
     display: flex;
     flex-direction: column;
@@ -219,10 +246,21 @@ select option {
 }
 
 .input-enviar {
-    text-align: center;
-    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
 }
 
+.btn-envio {
+    padding: 10px 20px;
+    background-color: var(--marron);
+    color: var(--cremita);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+
+}
 /*===============
     Actualizar
 =================*/
@@ -267,6 +305,10 @@ Eliminar
 /*==============
 FOOTER
 ======================*/
+#section-logout {
+    text-align: center;
+    margin-top: 3rem;
+} 
 
 footer {
     margin-top: 1rem;
@@ -304,9 +346,11 @@ footer {
 Login
 ==================*/
 
+#login-container h1 {
+    color: var(--marron)
+}
 
 #login-container {
-    border: 2px solid rebeccapurple;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -316,13 +360,30 @@ Login
 
 .login-botonera {
     display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
 }
 
-#login-form {
+#input-login, #acceso-rapido {
+    background-color: var(--cremita);
+    border: var(--cremita);
+    color: var(--marron);
+    cursor: pointer;
 
+}
+
+
+
+#login-form {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.error-message {
+    color: red;
+    font-size: 20px;    
 }
 
 form button {
@@ -338,6 +399,17 @@ form button {
 
 form button:hover {
     border: 1px solid var(--marron);
+}
+
+#input-logout {
+    background-color: var(--marron);
+    border: none;
+    color: var(--cremita);
+    cursor: pointer;
+}
+
+#input-logout:hover {
+    border: 2px solid #eb99a1;
 }
 
 form input {

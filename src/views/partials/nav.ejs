@@ -1,10 +1,11 @@
 <header>
+    <div class="titulo">
+        <img src="/img-admin/libro.png" alt="Logo de libro">
+            <h1>Panel de administración | Entre líneas</h1>
+    </div>
+    </div>
     <nav>
         <ul>
-            <div class="logo-titulo">
-                <img src="./img-admin/libro.png" alt="Logo de libro">
-                <h1>Entre líneas</h1>
-            </div>
             <li><a href="/">Ver</a></li>
             <li><a href="/consultar">Consultar id</a></li>
             <li><a href="/crear">Crear</a></li>
@@ -12,5 +13,16 @@
             <li><a href="/eliminar">Eliminar</a></li>
         </ul>
     </nav>
+    
 </header>
-<h1><%= about %></h1>
+<!-- Título e icono dinámicos -->
+<div class="logo-titulo">
+    <% if (typeof icon !== "undefined") { %>
+        <img src="/img-admin/<%= icon %>.png" alt="icono de la página">
+    <% } %>
+
+    <% if (typeof title !== "undefined") { %>
+        <h1><%= title %></h1>
+    <% } %>
+</div>
+
