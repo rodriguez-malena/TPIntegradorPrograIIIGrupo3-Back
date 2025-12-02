@@ -6,10 +6,10 @@ export const productView = async (req, res)  => {
         const[rows] = await ProductModels.selectAllProducts();
         console.log(rows);
 
-        
         res.render("index",{
             title:"Listado",
-            productos: rows
+            productos: rows,
+            icon: "rueda"
         });
 
     } catch (error) {

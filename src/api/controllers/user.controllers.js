@@ -1,7 +1,6 @@
 /*=============================
     Controladores usuario
 =============================*/
-//import bcrypt from "bcrypt";
 
 import UserModels from "../models/user.models.js";
 
@@ -16,16 +15,7 @@ export const insertUser = async (req, res) => {
             });
         }
 
-        /* Setup de bcrypt 
-        const saltRounds = 10;
-        const hashedPassword = await bcrypt.hash(password, saltRounds);*/
-
-        // Antes de hashear
         const [rows] = await UserModels.insertUser(name, email, password);
-
-        // Con la contraseña hasheada
-        //const [rows] = await UserModels.insertUser(name, email, hashedPassword);
-        // Ahora la constraseña de "thiago" pasa a ser "$2b$10$wemYF.qxnldHTJnMdxNcQeUBqZHz.FhqUBEmmCCcp/O.."
 
         res.status(201).json({
             message: "Usuario creado con exito",
