@@ -29,7 +29,7 @@ export const getProductId = async (req,res) => {
         
         if (rows.length === 0){
             console.log("El producto con ese id no existe");
-            res.status(400).json({
+            return res.status(400).json({
                 message: `El producto con el id ${id} no existe`
             })
         }
