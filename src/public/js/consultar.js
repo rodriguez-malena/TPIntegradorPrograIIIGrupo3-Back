@@ -10,24 +10,20 @@ let getProductForm = document.getElementById("getProduct-form");
             
             event.preventDefault(); 
             
-            // Tenemos que obtener los datos del formulario, por lo tanto se crea un objeto FormData
-            let formData = new FormData(event.target); // FormData permite leer inputs del formulario
+            let formData = new FormData(event.target); 
 
-            // Transformamos a objetos JS los valores de FormData
             let data = Object.fromEntries(formData.entries());
-            console.log(data); // {idProd: '2'}
+            console.log(data); 
 
-            let idProd = data.idProd; // guardo id
+            let idProd = data.idProd; 
             console.log(`Realizando una peticion GET a la url ${url}/api/products/${idProd}`);
 
-            //Enviamos en una petición GET el id pegado en la url
             let respuesta = await fetch(`${url}/api/products/${idProd}`) //solicitud GET
             
             let datos = await respuesta.json();
             
             if(respuesta.ok){
-                // Extraemos de la respuesta payload, el primer resultado que contiene el objeto que consultamos
-                let productos = datos.payload[0]; //accede al objeto del producto devuelto. Payload: los datos que realmente necesitamos
+                let productos = datos.payload[0]; 
                 console.log(productos);
                 mostrarProducto(productos);
 

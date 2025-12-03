@@ -23,10 +23,6 @@ import session from "express-session";
 import connection from "./src/api/database/db.js";
 
 
-
-
-
-
 /*===================
     Middlewares
 ====================*/
@@ -60,14 +56,6 @@ app.use(session({
 }));
 
 
-/* TO DO: 
-    1. Crear la vista del login con un <form> que manda los datos a un
-    2. Endpoint /login que recibe estos datos y redireciona
-    3. Integrar las redirecciones en view.routes.js
-    4. Añadiremos el boton en el <nav> para poder hacer una solicitud al
-    5. Endpoint /logout para salir del login
-
-*/
 
 /*======================
     Rutas
@@ -81,7 +69,6 @@ app.use("/", viewRoutes);
 // Rutas usuario
 app.use("/api/users", userRoutes);
 
-// TO DO, modularizar
 // Creamos el endpoint que recibe los datos que enviamos del <form> del login.ejs
 app.post("/login", async (req, res) => {
     
@@ -89,7 +76,6 @@ app.post("/login", async (req, res) => {
         console.log("BODY LOGIN:", req.body);
         const { email, password } = req.body; // Recibimos el email y el password
 
-        // Optimizacion 1: Evitamos consulta innecesaria y le pasamos un mensaje de error a la vista
         if(!email || !password) {
             return res.render("login", {
                 title: "Login",
@@ -98,11 +84,6 @@ app.post("/login", async (req, res) => {
         }
 
 
-        // Sentencia antes de bcrypt
-        // const sql = `SELECT * FROM users where email = ? AND password = ?`;
-        // const [rows] = await connection.query(sql, [email, password]);
-
-        // Bcrypt I -> Sentencia con bcrypt, traemos solo el email
         const sql = "SELECT * FROM users where email = ? ";
         const [rows] = await connection.query(sql, [email]);
 
@@ -115,17 +96,10 @@ app.post("/login", async (req, res) => {
             });
         }
         
-        console.log(rows); // [ { id: 7, name: 'test', email: 'test@test.com', password: 'test' } ]
+        console.log(rows); 
         const user = rows[0]; // Guardamos el usuario en la variable user
         console.table(user);
         
-        // Bcrypt II -> Comparamos el password hasheado (la contraseña del login hasheada es igual a la de la BBDD?)
-        //const match = await bcrypt.compare(password, user.password); // Si ambos hashes coinciden, es porque coinciden las contraseñas y match devuelve true
-        
-        //console.log(match);
-        
-        //if(match) {            
-            // Guardamos la sesion
             req.session.user = {
                 id: user.id,
                 name: user.name,
@@ -134,13 +108,6 @@ app.post("/login", async (req, res) => {
             
             // Una vez guardada la sesion, vamos a redireccionar al dashboard
             res.redirect("/");
-
-    /* } else {
-            return res.render("login", {
-                title: "Login",
-                error: "Epa! Contraseña incorrecta"
-            });
-        }*/
 
 
     } catch (error) {
@@ -170,7 +137,9 @@ app.post("/logout", (req, res) => {
     });
 });
 
-
+/*======================
+Arranque del servidor
+========================*/
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`);
 });

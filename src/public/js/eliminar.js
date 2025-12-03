@@ -27,12 +27,11 @@ formEliminar.addEventListener("submit", async (event) => {
             mostrarError(datos.message);
             return; 
         }   
-        let producto = datos.payload[0]; // Accedo al objeto que se encuentra en la posicion 0 de payload
-        
-        
+        let producto = datos.payload[0]; 
         validarEstado(producto);
         
         let deleteProduct_button = document.getElementById("deleteProduct_button");
+        
         deleteProduct_button.addEventListener("click", () => {
             idProdSeleccionado = producto.id;
             accionModal = "eliminar";

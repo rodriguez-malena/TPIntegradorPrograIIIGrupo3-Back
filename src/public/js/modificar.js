@@ -13,47 +13,71 @@ formModificar.addEventListener("submit", async (event) => {
 
     event.preventDefault(); // Prevenimos el envio por defecto del formulario
 
-    // Tenemos que obtener los datos del formulario, por tanto, vamos a crear un objeto FormData a partir de los datos del formulario
+    // Tenemos que obtener los datos del formulario
     let formData = new FormData(event.target); //Creamos un nuevo objeto FormData a partir de los datos del formulario
 
     console.log(formData); // FormData { idProd → "2" }
 
     // Transformamos a objetos JS los valores de FormData
     let data = Object.fromEntries(formData.entries());
-    console.log(data); // Object { idProd: '2' }
+    console.log(data);
 
-    let idProd = data.idProd; // Ahora ya tenemos guardado en una variable el valor del campo del formulario
+    let idProd = data.idProd; // Se guarda en una variable el valor del campo del formulario
     console.log(idProd);
 
     console.log(`Realizando una peticion GET a la url ${url}/api/products/${idProd}`);
 
-    // Enviamos en una peticion GET el id pegado a la url
     try{
-
         let response = await fetch(`${url}/api/products/${idProd}`);
-
         let datos = await response.json();
         console.log(datos);
 
         if(response.ok){
-            // Extraemos de la respuesta payload, el primer resultado que contiene el objeto que consultamos
-            let producto = datos.payload[0]; //accede al objeto del producto devuelto. Payload: los datos que realmente necesitamos
+            let producto = datos.payload[0]; // Extraemos de la respuesta payload, el primer resultado que contiene el objeto que consultamos
             console.log(producto);
             mostrarProducto(producto);
 
-        
         } else {
             console.log(datos);
             console.log(datos.message);
-
             mostrarError(datos.message);
-
         }
 
     } catch(error){
     console.log(error);
 }
 });
+
+function mostrarProducto(producto) {
+    const estadoTexto = producto.activo === 1 ? "Activo" : "Inactivo";
+    const estadoClase = producto.activo === 1 ? "estado-activo" : "estado-inactivo";
+
+            let htmlProducto = `
+                <li class="li-producto">
+                    <img class="producto-img" src="${producto.ruta_img}" alt="${producto.titulo}">
+                    <p>
+                        ID: ${producto.id} <br>
+                        ${producto.titulo} - ${producto.autor} <br>
+                        Precio $${producto.precio} <br>
+                        Estado: <span class="${estadoClase}">${estadoTexto}</span><br>
+                    </p>
+                </li>
+                <li class="li-botonera">
+                    <input class="input-submit" type="button" id="updateProduct_button" value="Actualizar producto">
+                </li>
+    `;
+            
+            listaProductos.innerHTML = htmlProducto;
+            
+            let updateProduct_button = document.getElementById("updateProduct_button");
+
+            updateProduct_button.addEventListener("click", event => {
+                event.stopPropagation(); 
+                crearFormulario(producto);
+            })
+
+}
+
 
 
 async function crearFormulario(producto) {
@@ -114,7 +138,7 @@ async function actualizarProducto(event) {
 
     console.log("Preparando datos del formulario para el PUT");
 
-    let formData = new FormData(event.target); // Le pasamos el formulario dinamico de antes al objeto FormData para obtener los datos del nuevo formulario de actualizacion
+    let formData = new FormData(event.target);
 
     let data = Object.fromEntries(formData.entries());
     console.log(data); // Ya tenemos como objetos JS los datos de nuestro formulario anterior con las nuevas modificaciones
@@ -135,7 +159,6 @@ async function actualizarProducto(event) {
         console.log(result.message);
         alert(result.message);
     } else {
-        // TO DO
         console.log(result.message);
         alert(result.message);
     }
@@ -146,35 +169,7 @@ async function actualizarProducto(event) {
     
 }
 
-function mostrarProducto(producto) {
-    const estadoTexto = producto.activo === 1 ? "Activo" : "Inactivo";
-    const estadoClase = producto.activo === 1 ? "estado-activo" : "estado-inactivo";
 
-            let htmlProducto = `
-                <li class="li-producto">
-                    <img class="producto-img" src="${producto.ruta_img}" alt="${producto.titulo}">
-                    <p>
-                        ID: ${producto.id} <br>
-                        ${producto.titulo} - ${producto.autor} <br>
-                        Precio $${producto.precio} <br>
-                        Estado: <span class="${estadoClase}">${estadoTexto}</span><br>
-                    </p>
-                </li>
-                <li class="li-botonera">
-                    <input class="input-submit" type="button" id="updateProduct_button" value="Actualizar producto">
-                </li>
-    `;
-            
-            listaProductos.innerHTML = htmlProducto;
-            
-            let updateProduct_button = document.getElementById("updateProduct_button");
-
-            updateProduct_button.addEventListener("click", event => {
-                event.stopPropagation(); // Evitamos la propagacion de eventos
-                crearFormulario(producto);
-            })
-
-}
 function mostrarError(message) {
     listaProductos.innerHTML = `
         <li class="message-error">

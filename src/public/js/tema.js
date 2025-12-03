@@ -1,10 +1,9 @@
 
-
 export function initTema() {
     const body = document.body;
     const cambiarTema = document.getElementById("cambiarTema");
 
-    if (!cambiarTema) return;  // Evita errores si la página no tiene el botón
+    if (!cambiarTema) return;  
 
     // Estado inicial del modo
     body.classList.toggle('tema2', localStorage.getItem('modo')==='t2')

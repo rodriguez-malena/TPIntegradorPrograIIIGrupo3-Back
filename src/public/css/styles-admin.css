@@ -87,9 +87,9 @@ h1 {
 
 @media (max-width: 768px) {
     header h1 {
-        font-size: 1.8rem;       /* Reduce tamaño del título */
+        font-size: 1.8rem;       
         text-align: center;
-        width: 100%;             /* Que use toda la fila si necesita */
+        width: 100%;             
     }
 
     .titulo {
@@ -321,7 +321,7 @@ Login
     flex-wrap: wrap;
     align-items: center;     
     gap: 1rem;               
-    width: fit-content;   /* Ajusta el ancho al contenido */
+    width: fit-content;  
 }
 
 

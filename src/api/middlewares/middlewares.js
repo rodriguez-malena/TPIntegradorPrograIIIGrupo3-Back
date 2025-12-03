@@ -29,7 +29,7 @@ const requireLogin = (req, res, next) => {
         return res.redirect("/login");
     }
 
-    next(); // Sin next, la peticion nunca llega a la respuesta (res)
+    next(); 
 }
 
 

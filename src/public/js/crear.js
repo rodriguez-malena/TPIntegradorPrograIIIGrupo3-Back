@@ -10,13 +10,13 @@ let url = "http://localhost:3000";
 altaUsers_container.addEventListener("submit", async event => {
     event.preventDefault();
 
-    let formData = new FormData(event.target); // Transformamos en objeto FormData los campos del formulario
+    let formData = new FormData(event.target); 
 
-    let data = Object.fromEntries(formData.entries()); // Transformaos a objeto JS el objeto FormData
+    let data = Object.fromEntries(formData.entries()); 
 
     console.log(data);
 
-    // Vamos a enviar los datos de nuestro usuario al endpoint /api/users
+    // Envia los datos de nuestro usuario al endpoint /api/users
     try {
         let response = await fetch(`${url}/api/users`, {
             method: "POST",
@@ -34,7 +34,7 @@ altaUsers_container.addEventListener("submit", async event => {
             alert(result.message)
         }
 
-    } catch(error) { // El catch solo captura errores de red
+    } catch(error) { 
         console.error("Error al enviar los datos: ", error);
         alert("Error al procesar la solicitud");
     }
@@ -44,22 +44,17 @@ altaUsers_container.addEventListener("submit", async event => {
 // Alta productos
 altaProuctsContainer.addEventListener("submit", async (event) => {
 
-    event.preventDefault(); //evitamos el envio x defecto del formulario
-            
-    console.log(event.target); // trae todo el formulario html que activó el evento
-            
+    event.preventDefault(); 
+    
     alert("Formulario enviado");
 
-    let formData = new FormData(event.target);//Guardamos toda la info del formulario en el objeto nativo FormData
+    let formData = new FormData(event.target);
 
-            // Transformamos la info de FormData en un objeto JavaScript
-    let data = Object.fromEntries(formData.entries()); //Nuestro objeto ya esta listo para enviarse previo parseo a JSON
-            
+    let data = Object.fromEntries(formData.entries()); 
+
     console.log(JSON.stringify(data));
 
-    //Ahora ya le modemos meter en el cuerpo de la peticion HTTP Post este objeto con los datos del formulario  en JSON.
     try {
-    // En peticiones distintas a GET, tenemos que especificar mas informacion en un parametro de opciones
         let response = await fetch (`${url}/api/products`, {
             method: "POST",
             headers: {
@@ -77,7 +72,7 @@ altaProuctsContainer.addEventListener("submit", async (event) => {
             }
 
 
-            } catch (error) { //el catch solo captura errores de red
+            } catch (error) { 
                 console.error("Error al enviar los datos: ", error);
                 alert("Error al procesar la solicitud");
             }
