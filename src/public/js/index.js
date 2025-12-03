@@ -36,7 +36,7 @@ function mostrarProductos(array) {
         let botonReactivar = "";
         if (!prod.activo){
             botonReactivar = `
-            <button onclick="reactivarProducto(${prod.id})" class="input-submit">Reactivar</button>`;
+            <button class="btn-reactivar input-submit" data-id="${prod.id}">Reactivar</button>`;
         }
             
         htmlProductos += `
@@ -54,7 +54,16 @@ function mostrarProductos(array) {
     });
 
     contenedorProductos.innerHTML = htmlProductos;
+    
+    document.querySelectorAll(".btn-reactivar").forEach(btn => {
+        btn.addEventListener("click", function() {
+            idProdReactivar = this.dataset.id;
+            modal.style.display = "block";
+            body.style.overflow = "hidden";
+        })
+    })
 }
+
 
 async function reactivarProducto(id) {
     try {
@@ -73,7 +82,31 @@ async function reactivarProducto(id) {
     }
 }
 
+/*===============
+MODAL
+==================*/
+let idProdReactivar=null;
 
+var modal = document.getElementById("ButtonModal");
+var body = document.getElementsByTagName("body")[0];
+
+var btnConfirmar = document.getElementById("btnConfirmarImpresion");
+var btnCancelar = document.getElementById("btnCancelarModal");
+
+btnCancelar.onclick = function() {
+    cerrarModal();
+}
+
+btnConfirmar.onclick = function() {
+    reactivarProducto(idProdReactivar);
+    cerrarModal();
+}
+
+function cerrarModal() {
+    modal.style.display = "none";
+    body.style.overflow = "visible";
+}
+/*====*/
 
 
 function init() {

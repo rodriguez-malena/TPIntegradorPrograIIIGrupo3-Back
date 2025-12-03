@@ -1,6 +1,6 @@
 import { initTema, imprimirDatosAlumno } from "./tema.js";
-    initTema();
-    imprimirDatosAlumno();
+initTema();
+imprimirDatosAlumno();
 
 let listaProductos = document.getElementById("lista-productos");
 
@@ -33,10 +33,12 @@ formEliminar.addEventListener("submit", async (event) => {
         validarEstado(producto);
         
         let deleteProduct_button = document.getElementById("deleteProduct_button");
-        deleteProduct_button.addEventListener("click", () => {
-            eliminarProducto(producto.id);
-        });
-
+        deleteProduct_button.addEventListener("click", function(){
+            idProdEliminar = producto.id;
+            modal.style.display = "block";
+            body.style.overflow = "hidden";
+        })
+        
     } catch(error){
         console.log(error);
     }
@@ -55,56 +57,81 @@ async function eliminarProducto(idProd) {
         
         let data = await respuesta.json();
         console.log("Respuesta DELETE:", data);
-
+        
         alert("Producto dado de baja correctamente.");
         listaProductos.innerHTML = "";
         
     } catch (error) {
-                console.error("Error al hacer DELETE:", error);
-                alert("Ocurrió un error al intentar dar de baja el producto.");
-            }
-        }
-
-        function validarEstado (producto) {
-            if (producto.activo === 0) {
-                listaProductos.innerHTML = `
-                <li class="li-producto">
-                        <img src="${producto.ruta_img}">
-                        <p>
-                        ID: ${producto.id} <br> 
-                        ${producto.titulo} - ${producto.autor} <br> 
-                            Precio $${producto.precio} <br>
-                            Estado: <span class="estado-inactivo">Inactivo</span>
-                            </p>
-                    </li>
-                    <li class="li-botonera">
-                    <p class="message-error">Este producto ya está dado de baja.</p>
-                    </li>`;
-                    return;
-                } else {
-                    let htmlProducto = `
-                    <li class="li-producto">
-                    <img src="${producto.ruta_img}">
-                    <p>
-                    ID: ${producto.id} <br> 
-                    ${producto.titulo} - ${producto.autor} <br> 
-                    Precio $${producto.precio} <br>
-                    Estado: <span class="estado-activo">Activo</span>
-                    </p>
-                    </li>
-                    <li class="li-botonera">
-                    <input class="input-submit" type="button" id="deleteProduct_button" value="Dar de baja">
-                    </li>
-                    `;
-                    listaProductos.innerHTML = htmlProducto;
-                }
+        console.error("Error al hacer DELETE:", error);
+        alert("Ocurrió un error al intentar dar de baja el producto.");
     }
-        function mostrarError(message) {
-            listaProductos.innerHTML = `
-                <li class="message-error">
-                <p>
-                        <strong>${message}</strong>
-                        </p>
-                        </li>`
-                        ;
-                    }
+}
+
+function validarEstado (producto) {
+    if (producto.activo === 0) {
+        listaProductos.innerHTML = `
+        <li class="li-producto">
+        <img src="${producto.ruta_img}">
+        <p>
+        ID: ${producto.id} <br> 
+        ${producto.titulo} - ${producto.autor} <br> 
+        Precio $${producto.precio} <br>
+        Estado: <span class="estado-inactivo">Inactivo</span>
+        </p>
+        </li>
+        <li class="li-botonera">
+        <p class="message-error">Este producto ya está dado de baja.</p>
+        </li>`;
+        return;
+    } else {
+        let htmlProducto = `
+        <li class="li-producto">
+        <img src="${producto.ruta_img}">
+        <p>
+        ID: ${producto.id} <br> 
+        ${producto.titulo} - ${producto.autor} <br> 
+        Precio $${producto.precio} <br>
+        Estado: <span class="estado-activo">Activo</span>
+        </p>
+        </li>
+        <li class="li-botonera">
+        <input class="input-submit" type="button" id="deleteProduct_button" value="Dar de baja">
+        </li>
+        `;
+        listaProductos.innerHTML = htmlProducto;
+    }
+}
+function mostrarError(message) {
+    listaProductos.innerHTML = `
+    <li class="message-error">
+    <p>
+    <strong>${message}</strong>
+    </p>
+    </li>`
+    ;
+}
+
+/*===============
+MODAL
+==================*/
+let idProdEliminar = null;
+var modal = document.getElementById("ButtonModal");
+var body = document.getElementsByTagName("body")[0];
+
+var btnConfirmar = document.getElementById("btnConfirmarImpresion");
+var btnCancelar = document.getElementById("btnCancelarModal");
+
+btnCancelar.onclick = function() {
+    cerrarModal();
+}
+
+btnConfirmar.onclick = function() {
+    eliminarProducto(idProdEliminar);
+    cerrarModal();
+}
+
+function cerrarModal() {
+    modal.style.display = "none";
+    body.style.overflow = "visible";
+}
+/*====*/
