@@ -4,25 +4,25 @@ initTema();
 let listaProductos = document.getElementById("lista-productos");
 let getProductForm = document.getElementById("getProduct-form");
 
-let url = "http://localhost:3000";
+        let url = "http://localhost:3000";
 
-getProductForm.addEventListener("submit", async (event) => {
+        getProductForm.addEventListener("submit", async (event) => {
+            
+            event.preventDefault(); 
+            
+            // Tenemos que obtener los datos del formulario, por lo tanto se crea un objeto FormData
+            let formData = new FormData(event.target); // FormData permite leer inputs del formulario
 
-event.preventDefault(); //prevenimos enviar x defecto el formulario, evita que recargue la página
+            // Transformamos a objetos JS los valores de FormData
+            let data = Object.fromEntries(formData.entries());
+            console.log(data); // {idProd: '2'}
 
-// Tenemos que obtener los datos del formulario, por lo tanto se crea un objeto FormData
-let formData = new FormData(event.target); // FormData permite leer inputs del formulario
+            let idProd = data.idProd; // guardo id
+            console.log(`Realizando una peticion GET a la url ${url}/api/products/${idProd}`);
 
-// Transformamos a objetos JS los valores de FormData
-let data = Object.fromEntries(formData.entries());
-console.log(data); // {idProd: '2'}
-
-let idProd = data.idProd; // guardo id
-console.log(`Realizando una peticion GET a la url ${url}/api/products/${idProd}`);
-
-        //Enviamos en una petición GET el id pegado en la url
-        try{
+            //Enviamos en una petición GET el id pegado en la url
             let respuesta = await fetch(`${url}/api/products/${idProd}`) //solicitud GET
+            
             let datos = await respuesta.json();
             
             if(respuesta.ok){
@@ -34,12 +34,10 @@ console.log(`Realizando una peticion GET a la url ${url}/api/products/${idProd}`
             } else {
                 console.log(datos);
                 console.log(datos.message);
+
                 mostrarError(datos.message);
             }
-        }catch(error){
-            console.log(error);
-            alert("No existe producto con ese id");
-        }
+            
         });
 
 
