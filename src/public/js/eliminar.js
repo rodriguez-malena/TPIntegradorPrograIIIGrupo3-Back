@@ -101,6 +101,7 @@ function validarEstado (producto) {
         listaProductos.innerHTML = htmlProducto;
     }
 }
+
 function mostrarError(message) {
     listaProductos.innerHTML = `
     <li class="message-error">
@@ -134,4 +135,3 @@ function cerrarModal() {
     modal.style.display = "none";
     body.style.overflow = "visible";
 }
-/*====*/
