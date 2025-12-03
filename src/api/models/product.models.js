@@ -1,4 +1,6 @@
-/*Consultas sql */
+/*====================
+Consultas sql 
+======================*/
 
 import connection from "../database/db.js";
 

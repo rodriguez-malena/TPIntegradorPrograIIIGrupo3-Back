@@ -8,15 +8,7 @@ import { dirname, join  } from "path" // "dirname" devuelve el directorio de una
 const __filename = fileURLToPath(import.meta.url);
 
 // Obtener el directorio del archivo actual:
-const __dirname = join(dirname(__filename),"../../../") 
-
-/* ¿ Qué estamos haciendo aca?
-
-    1. dirname(__filename): obtiene el directorio del archivo actual
-
-    2. join (...., "../../../") Estamos retrocediendo 3 niveles en la estructura de directorios. Apunta a la raiz del proyecto saliendo de utils/api/src
-*/
-
+const __dirname = join(dirname(__filename),"../../../")  // join (...., "../../../") Estamos retrocediendo 3 niveles en la estructura de directorios. Apunta a la raiz del proyecto saliendo de utils/api/src
 
 // Exportamos el directorio base calcuado y la funcion join para construir rutas relativas
 export {
