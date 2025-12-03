@@ -142,6 +142,10 @@ nav a:hover {
     text-align: center;
 }
 
+.card-producto button {
+    margin-top: 1rem;
+}
+
 #lista-productos{
     display:flex;
     flex-wrap: wrap;
@@ -167,7 +171,7 @@ nav a:hover {
     height: auto;
 }
 
-#getProduct-form {
+#getProduct-form, #form-modificar-producto, #form-eliminar-producto {
     display: flex;
     flex-wrap: wrap;
     align-items: center;     
@@ -177,6 +181,7 @@ nav a:hover {
 
 .ingresoId {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 1rem;
 }
@@ -185,14 +190,14 @@ nav a:hover {
 .input-submit {
     font-family: var(--fuente-secundaria);
     background-color: var(--marron);
-    padding: 0.5rem;
     color: var(--cremita);
-    border: none;
     border-radius: 3px;
+    border: var(--marron);
+    margin-bottom: 0.5rem;
     cursor:pointer;
 }
 
-.input-submit:hover {
+.input-submit:hover, .btn-envio:hover {
     color: white;
 }
 
@@ -204,10 +209,6 @@ nav a:hover {
     font-size: 15px;
 
 }
-
-/*===============
-    Crear
-=================*/
 
 #alta-container {
     display: flex;
@@ -252,15 +253,15 @@ select option {
 }
 
 .btn-envio {
-    padding: 10px 20px;
+    font-family: var(--fuente-secundaria);
     background-color: var(--marron);
     color: var(--cremita);
     border: none;
-    border-radius: 6px;
+    border-radius: 3px;
     cursor: pointer;
-    font-size: 1rem;
-
 }
+
+
 /*===============
     Actualizar
 =================*/
@@ -272,14 +273,43 @@ select option {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 30%;
+
+    width: 100%;         /* que pueda tomar todo el ancho disponible */
+    max-width: 500px;    /* pero no más grande que 500px */
     gap: 0.5rem;
-    padding: 1rem;
-    border-radius: 5px;
-    margin: 0 auto; 
+    padding: 1.5rem;
+
+    border-radius: 8px;
+    margin: 0 auto;
+    
     color: var(--marron);
     background-color: var(--cremita);
-    box-shadow:  var(--shadow);
+    box-shadow: var(--shadow);
+}
+
+/* Inputs internos */
+#updateProducts_form .input-ingreso {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    #updateProducts_form {
+        padding: 1rem;
+        max-width: 90%;   /* se adapta mejor a tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    #updateProducts_form {
+        padding: 0.8rem;
+        max-width: 100%;  /* en celular ocupa toda la pantalla */
+        border-radius: 5px;
+    }
+
+    #updateProducts_form label {
+        font-size: 0.9rem;
+    }
 }
 
 /*=================
@@ -296,17 +326,12 @@ Eliminar
     font-weight: bold;
 }
 
-
-.message-error {
-    list-style: none;
-    color: var(--marron);
-}
-
 /*==============
 FOOTER
 ======================*/
 #section-logout {
-    text-align: center;
+
+    text-align:end;
     margin-top: 3rem;
 } 
 
@@ -324,6 +349,7 @@ footer {
     justify-content: space-between;
 
 }
+
 #datosAlumno {
     text-align:right;
     margin-right: 1rem;
@@ -331,12 +357,11 @@ footer {
 
 .message-error {
     list-style: none;
-    padding: 10px;
-    border: 2px solid #eb99a1;
-    width: 50%;
-    text-align: center;
-    margin: 0 auto;
+    padding: 0.2rem;
+    border: 1px solid var(--cremita);
     border-radius: 5px;
+    width: 50%;
+    text-align: center;    
     font-size: 16px;
     font-weight: bold;
     color: #eb99a1;;
@@ -366,6 +391,8 @@ Login
 }
 
 #input-login, #acceso-rapido {
+    font-family: var(--fuente-secundaria);
+    border-radius: 5px;
     background-color: var(--cremita);
     border: var(--cremita);
     color: var(--marron);
@@ -388,9 +415,9 @@ Login
 
 form button {
     font-family: var(--fuente-secundaria);
+    border-radius: 5px;
     padding: 0.5rem;
     color: var(--cremita);
-    border-radius: 5px;
     box-shadow: 0 6px 10px rgba(70, 39, 5, 0.15);
     border: none;
     background-color: var(--marron);
@@ -402,6 +429,8 @@ form button:hover {
 }
 
 #input-logout {
+    font-family: var(--fuente-secundaria);
+    border-radius: 3px;
     background-color: var(--marron);
     border: none;
     color: var(--cremita);
@@ -409,7 +438,7 @@ form button:hover {
 }
 
 #input-logout:hover {
-    border: 2px solid #eb99a1;
+    color: #eb99a1;
 }
 
 form input {

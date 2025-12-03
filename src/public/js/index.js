@@ -29,12 +29,15 @@ function mostrarProductos(array) {
     let htmlProductos = "";
                 
     array.forEach(prod => {
+
+        const estadoTexto = prod.activo === 1 ? "Activo" : "Inactivo";
+        const estadoClase = prod.activo === 1 ? "estado-activo" : "estado-inactivo";
+        
         let botonReactivar = "";
-            if (!prod.activo){
-                botonReactivar = `
-                <button onclick="reactivarProducto(${prod.id})" 
-                class="input-submit"">Reactivar</button>`;
-            }
+        if (!prod.activo){
+            botonReactivar = `
+            <button onclick="reactivarProducto(${prod.id})" class="input-submit">Reactivar</button>`;
+        }
             
         htmlProductos += `
             <div class="card-producto">
@@ -43,10 +46,8 @@ function mostrarProductos(array) {
                 <p>
                     Id: ${prod.id}<br>
                     $${prod.precio}<br>
-                    Estado: <span class="${prod.activo === 1 ? "estado-activo" : "estado-inactivo"}">
-                    ${prod.activo === 1? "Activo" : "Inactivo <br>"}
-                    ${botonReactivar} <br>
-                    </span>
+                    Estado: <span class="${estadoClase}">${estadoTexto}</span><br>
+                    ${botonReactivar} 
                 </p>
             </div>
         `;

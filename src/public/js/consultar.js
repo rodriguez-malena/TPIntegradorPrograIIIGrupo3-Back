@@ -29,7 +29,7 @@ let getProductForm = document.getElementById("getProduct-form");
                 // Extraemos de la respuesta payload, el primer resultado que contiene el objeto que consultamos
                 let productos = datos.payload[0]; //accede al objeto del producto devuelto. Payload: los datos que realmente necesitamos
                 console.log(productos);
-                mostrarProductos(productos);
+                mostrarProducto(productos);
 
             } else {
                 console.log(datos);
@@ -41,13 +41,21 @@ let getProductForm = document.getElementById("getProduct-form");
         });
 
 
-        function mostrarProductos(producto) {
+        function mostrarProducto(producto) {
+            const estadoTexto = producto.activo === 1 ? "Activo" : "Inactivo";
+            const estadoClase = producto.activo === 1 ? "estado-activo" : "estado-inactivo";
+
             let htmlProducto = `
                 <li class="li-producto">
-                    <img src="${producto.ruta_img}">
-                    <p>ID: ${producto.id} <br> ${producto.titulo} - ${producto.autor} <br> Precio $${producto.precio}</p>
-                </li>`; //Insertar resultado en la página
-                
+                    <img class="producto-img" src="${producto.ruta_img}" alt="${producto.titulo}">
+                    <p>
+                        ID: ${producto.id} <br>
+                        ${producto.titulo} - ${producto.autor} <br>
+                        Precio $${producto.precio} <br>
+                        Estado: <span class="${estadoClase}">${estadoTexto}</span><br>
+                    </p>
+                </li>
+    `;
                 listaProductos.innerHTML= htmlProducto;
         }
 
