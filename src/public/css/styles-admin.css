@@ -2,6 +2,7 @@
     --cremita: #f8eacf;
     --cremin: rgb(233, 229, 222);
     --marron: #452C27;
+    --rosa-chicle: #eb99a1;
     --marron-claro: #664D4D;
     --fuente-titulos:"Vend Sans", sans-serif;
     --fuente-secundaria: "Nunito Sans", sans-serif;
@@ -83,6 +84,43 @@ h1 {
 }
 
 
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;       /* Reduce tamaño del título */
+        text-align: center;
+        width: 100%;             /* Que use toda la fila si necesita */
+    }
+
+    .titulo {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;  
+        gap: 1rem;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 18px;
+    }
+
+    .titulo {
+        flex-direction: column;   
+        gap: 0.3rem;
+    }
+
+    
+}
+
+/*=====================
+NAVEGACIÓN
+====================*/
 nav ul {
     display: flex;
     flex-wrap: wrap;
@@ -102,6 +140,112 @@ nav a:hover {
     text-decoration: underline;
 }
 
+/*================
+Login
+==================*/
+
+#login-container h1 {
+    color: var(--marron)
+}
+
+#login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 350px;
+    justify-content: space-evenly;
+}
+
+.login-botonera {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+#input-login, #acceso-rapido {
+    font-family: var(--fuente-secundaria);
+    border-radius: 5px;
+    background-color: var(--cremita);
+    border: var(--cremita);
+    color: var(--marron);
+    cursor: pointer;
+
+}
+
+
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error-message {
+    color: var(--rosa-chicle);
+    font-size: 20px;    
+}
+
+
+@media (max-width: 768px) {
+
+    #login-container {
+        height: auto;
+        padding: 2rem ;
+    }
+
+    #login-container h1 {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    #login-form input {
+        width: 80%;
+        font-size: 14px;
+    }
+
+    .login-botonera {
+        gap: 1.5rem;
+    }
+
+    #input-login, #acceso-rapido {
+        padding: 10px 20px;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    #login-container {
+        height: auto;
+        padding: 1rem 0;
+    }
+
+    #login-container h1 {
+        font-size: 1.6rem;
+        text-align: center;
+    }
+
+    #login-form input {
+        width: 90%;
+        font-size: 0.95rem;
+        padding: 8px;
+    }
+
+    .login-botonera {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        align-items: center;
+    }
+
+    #input-login, #acceso-rapido {
+        width: 90%;
+        padding: 10px;
+        font-size: 1rem;
+    }
+}
 
 /*===============
     main
@@ -161,6 +305,7 @@ nav a:hover {
 
 .li-producto {
     display: flex;
+    flex-wrap: wrap;
     padding-left: 0;
     justify-content: space-between;
     gap: 1rem;
@@ -179,12 +324,15 @@ nav a:hover {
     width: fit-content;   /* Ajusta el ancho al contenido */
 }
 
+
+
 .ingresoId {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 1rem;
 }
+
 
 
 .input-submit {
@@ -212,10 +360,10 @@ nav a:hover {
 
 #alta-container {
     display: flex;
-    justify-content: center; /* Centra horizontalmente */
+    justify-content: center; 
     flex-wrap: wrap;
-    align-items: flex-start; /* Alinea arriba, evita que uno suba/baje */
-    gap: 3rem; /* Espacio entre los formularios */
+    align-items: flex-start; 
+    gap: 3rem; 
     padding: 2rem;
 }
 
@@ -273,9 +421,8 @@ select option {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    width: 100%;         /* que pueda tomar todo el ancho disponible */
-    max-width: 500px;    /* pero no más grande que 500px */
+    width: 100%;         
+    max-width: 500px;    
     gap: 0.5rem;
     padding: 1.5rem;
 
@@ -296,14 +443,14 @@ select option {
 @media (max-width: 768px) {
     #updateProducts_form {
         padding: 1rem;
-        max-width: 90%;   /* se adapta mejor a tablets */
+        max-width: 90%;   /
     }
 }
 
 @media (max-width: 480px) {
     #updateProducts_form {
         padding: 0.8rem;
-        max-width: 100%;  /* en celular ocupa toda la pantalla */
+        max-width: 100%; 
         border-radius: 5px;
     }
 
@@ -364,54 +511,11 @@ footer {
     text-align: center;    
     font-size: 16px;
     font-weight: bold;
-    color: #eb99a1;;
-}
-
-/*================
-Login
-==================*/
-
-#login-container h1 {
-    color: var(--marron)
-}
-
-#login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 350px;
-    justify-content: space-evenly;
-}
-
-.login-botonera {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-#input-login, #acceso-rapido {
-    font-family: var(--fuente-secundaria);
-    border-radius: 5px;
-    background-color: var(--cremita);
-    border: var(--cremita);
-    color: var(--marron);
-    cursor: pointer;
-
+    color: var(--rosa-chicle);;
 }
 
 
 
-#login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.error-message {
-    color: red;
-    font-size: 20px;    
-}
 
 form button, .btn-cancelar, .btn-confirmar {
     font-family: var(--fuente-secundaria);
@@ -428,6 +532,10 @@ form button:hover {
     border: 1px solid var(--marron);
 }
 
+
+/*=============
+Logout
+===============*/
 #input-logout {
     font-family: var(--fuente-secundaria);
     border-radius: 3px;
@@ -438,7 +546,7 @@ form button:hover {
 }
 
 #input-logout:hover {
-    color: #eb99a1;
+    color: var(--rosa-chicle);
 }
 
 form input {
@@ -467,8 +575,8 @@ MODAL
     background-color: var(--cremita);
     color: var(--marron);
     margin: auto;
-    width: 100%;           /* ocupa todo el ancho disponible */
-    max-width: 450px;      /* pero no se estira más de esto */
+    width: 100%;          
+    max-width: 450px;      
     padding: 20px;
     box-shadow: var(--iluminador);
     border-radius: 8px;
